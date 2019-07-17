@@ -268,9 +268,62 @@ css 可以影响可替换元素的位置，但是不会影响到可替换元素�
 
 `...`
 
+
+
+### 重点介绍标签
+
 ****
 
-### 总结
+#### iframe 标签
+
+* `src` 属性，可以嵌入打开的地址，可以是相对的也可以是网址，如：`<iframe src="https://qq.com"></iframe>`
+
+* `frameborder` 属性，设置为 `0` 可以去除 `iframe` 的默认样式, 如：`<ifrmae src="https://qq.com" frameborder="0"></iframe>`
+
+* `name` 属性，如果设置一个 `name` 值，则可以结合 `a` 标签使用；如：
+
+  ```html
+  <iframe name="xxx" src="#" frameborder="0"></iframe>
+  <a href="http://qq.com" target="xxx">在ifrme中打开qq.com</a>
+  ```
+
+#### a 标签
+
+* `target` 属性
+  * `_top` 在顶层窗口打开页面
+  * `_blank` 在新窗口打开页面
+  * _self 在本窗口打开页面
+  * _parent  在父级窗口打开页面
+* `download` 属性 提供下载，根据`http`响应提供的 `content-type` 属性可以直接下载文件，当值为 `application/octet-stream` 可以直接下载
+* `href` 属性 链接到的地址，值可以为：
+  * 网址，网址可以是 `http` 协议，或者当前添加一个相对路径，当前是什么协议就走什么协议
+  * 可以发起请求，通常是 `get`
+  * 可以是一个伪协议，如: `<a href="javascript:;"></a>`
+  * 可以是一个查询字符串，如：`<a href="?name=aaa"></a>` 发起 `get` 请求
+  * 可以是一个锚点，如：`<a href="#bbb"></a>`，单独写`#`的话会出现回到顶部效果；
+  * 可以是一个空字符，如果是空字符串的话，则会刷新页面；
+
+详情请查看 <https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a>
+
+#### form 标签
+
+* `form` 标签发起 `post`请求，可以使用 `method` 规定请求方式，默认是 `get` 提交
+* `action` 设置请求地址，如：`<form action="./index2.html"></a>`
+* `target` 窗口打开方式，与 超链接打开方式一致
+
+##### form 子级
+
+**重点：如果一个form表单中只有一个按钮（`button`）,那么会自动升级为提交按钮，form表单必须有提交按钮才可以提交，也就是`<input type="submit" value="提交">`**
+
+更多请查看：<https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/form>
+
+#### table 标签
+
+`table` 用于展示数据，注意：当 `thead tbody tfoot` 同时存在时，前后书写顺序不会影响展示效果；
+
+详细属性请查看：<https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/table>
+
+###  总结
 
 ****
 
