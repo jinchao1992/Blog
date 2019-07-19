@@ -323,6 +323,24 @@ css 可以影响可替换元素的位置，但是不会影响到可替换元素�
 
 详细属性请查看：<https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/table>
 
+### 2019/07/19 更新
+
+#### 标签 tabindex 属性
+
+[MDN](<https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/tabindex>) 解释：`tabindex` 全局属性 指示其元素是否可以聚焦，以及它是否/在何处参与顺序键盘导航。
+
+接受一个整数作为值，整数的值不同，结果也会展示不同：
+
+* `tabindex=负值` 通常是 `tabindex="-1"` , 表示元素是可聚焦的，但是不能通过键盘导航来访问该元素，也就是`Tab` 键；
+*  `tabindex="0"` , 表示元素是可聚焦的，并且可以通过键盘导航来聚焦到该元素，它的相对顺序是当前处于的 `DOM` 解构来决定的。
+* `tabindex=正值` 表示元素可聚焦，可以通过键盘导航来聚焦到该元素；它的相对顺序按照 `tabindex` 的数值**递增而滞后聚焦**。 如果多个元素拥有相同的 `tabindex` , 它们的相对顺序按照它们在当前 `DOM` 中的先后顺序决定。
+
+根据键盘序列导航的顺序，值为 `0` 、非法值、或者没有 `tabindex`值的元素应该放置在 `tabindex` 值为正值的元素后面。
+
+> 注意：tabindex 的最大值不应该超过 32767。如果没有指定，默认值为 -1
+
+
+
 ###  总结
 
 ****
