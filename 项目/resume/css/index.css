@@ -1,0 +1,54 @@
+body,
+ol {
+  margin: 0;
+}
+body {
+  background: #000;
+}
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+
+/* 头部导航与logo */
+.header {
+  padding: 20px 0;
+}
+.header-inner {
+  padding: 0 16px;
+}
+.logo {
+  float: left;
+  font-size: 24px;
+  font-family: 'Arial Black';
+  padding: 3px 0 4px 0;
+}
+.logo .rs{
+  color: #e6686a;
+  margin-right: 4px;
+}
+.logo .card {
+  color: #9a9da2;
+}
+.header-inner > nav {
+  float: right;
+  padding: 3px 0 4px 0;
+}
+.header-inner > nav > a {
+  color: #b7b7b7;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 17px;
+  padding: 5px 0;
+  border-top: 3px solid transparent; 
+  border-bottom: 3px solid transparent;
+  display: block;
+  float: left;
+}
+.header-inner > nav > a:hover {
+  border-bottom: 3px solid #e6686a;
+}
