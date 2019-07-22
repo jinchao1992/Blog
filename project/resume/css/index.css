@@ -3,7 +3,8 @@ ol {
   margin: 0;
 }
 body {
-  background: #000;
+  background: #fff;
+  color: #333;
 }
 .clearfix::after {
   content: '';
@@ -17,6 +18,8 @@ a {
 /* 头部导航与logo */
 .header {
   padding: 20px 0;
+  background: #000;
+  
 }
 .header-inner {
   padding: 0 16px;
