@@ -1,9 +1,15 @@
 body,
-ol {
+ol,
+h1,h2,h3,h4,h5,h6,
+p,
+dd {
   margin: 0;
 }
+ol {
+  padding: 0;
+}
 body {
-  background: #fff;
+  background: #efefef;
   color: #333;
 }
 .clearfix::after {
@@ -18,8 +24,10 @@ a {
 /* 头部导航与logo */
 .header {
   padding: 20px 0;
-  background: #000;
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 .header-inner {
   padding: 0 16px;
@@ -54,4 +62,102 @@ a {
 }
 .header-inner > nav > a:hover {
   border-bottom: 3px solid #e6686a;
+}
+
+/* 广告图 */
+.banner {
+  height: 515px;
+  background-image: url(../img/rs-cover.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7)
+}
+
+/* 个人信息 */
+.card-wrap {
+  margin-top: -340px;
+}
+.card-user {
+  max-width: 940px;
+  background: #fff;
+  margin: 0 auto;
+}
+.picture {
+  padding: 50px;
+}
+.picture .avatar{
+  float: left;
+}
+.picture .text {
+  float: left;
+  margin-left: 65px;
+  width: 470px;
+}
+
+.welcome {
+  color: #fff;
+  background: #e6686a;
+  padding: 4px 16px;
+  position: relative;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.welcome::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 3px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #e6686a;
+  border-top-width: 0;
+}
+.profile h1 {
+  margin-top: 18px;
+}
+.profile hr {
+  border: none;
+  height: 0;
+  border-top: 1px solid #dedede;
+  margin: 20px 0;
+}
+.user-info dt,
+.user-info dd {
+  float: left;
+  padding: 5px 0;
+}
+.user-info dt {
+  width: 30%;
+  font-weight: bold;
+}
+.user-info dd {
+  width: 70%;
+  color: #9da0a7;
+}
+
+/* 社交 */
+.media {
+  text-align: center;
+  background: #e6686a;
+}
+.media a {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 16px;
+}
+.media a:hover {
+  background-color: #CF5D5F;
+}
+.media a svg {
+  fill: #fff;
+  font-size: 32px;
+  vertical-align: top;
 }
