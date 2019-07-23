@@ -6,12 +6,17 @@
   <style>
     body {
       margin: 0;
+      background-color: #eee;
+    }
+
+    p {
+      text-align: center;
     }
 
     .taiji {
       width: 200px;
       height: 200px;
-      background-color: #eee;
+      background-color: #fff;
       border-width: 4px 4px 100px 4px;
       border-style: solid;
       border-color: black;
@@ -19,6 +24,7 @@
       border-radius: 50%;
       box-sizing: border-box;
       margin: 100px auto;
+      animation: turn 3s linear infinite;
     }
 
     .taiji::before {
@@ -32,7 +38,7 @@
       box-sizing: content-box;
       border: 36px solid black;
       border-radius: 50%;
-      background-color: #eee;
+      background-color: #fff;
     }
 
     .taiji::after {
@@ -44,17 +50,25 @@
       left: 50%;
       display: block;
       box-sizing: content-box;
-      border: 36px solid #eee;
+      border: 36px solid #fff;
       border-radius: 50%;
       background-color: black;
+    }
+
+    @keyframes turn {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="taiji">
-
-  </div>
+  <div class="taiji"></div>
+  <p>「道生一，一生二，二生三，三生万物」</p>
 </body>
 
 </html>

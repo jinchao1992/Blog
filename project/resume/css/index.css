@@ -87,6 +87,7 @@ a {
   max-width: 940px;
   background: #fff;
   margin: 0 auto;
+  box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.5);
 }
 .picture {
   padding: 50px;
@@ -160,4 +161,32 @@ a {
   fill: #fff;
   font-size: 32px;
   vertical-align: top;
+}
+
+.download-wrap {
+  text-align: center;
+}
+.download-wrap .download {
+  padding: 22px 56px;
+  border: 1px solid #cdcfd1;
+  font-size: 16px;
+  font-family: 'kai';
+  font-weight: bold;
+  display: inline-block;
+  color: #3d4451;
+  background-color: #efefef;
+  margin: 35px 0;
+}
+.download-wrap .download:hover {
+  transition: box-shadow .3s;
+  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);
+}
+.info {
+  max-width: 940px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'kai';
+  line-height: 1.8;
+  font-size: 18px;
+  color: #3d4451;
 }
