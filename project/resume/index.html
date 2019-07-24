@@ -91,32 +91,86 @@
       <br>技能：前端开发、日常摸鱼。
     </p>
   </main>
-  <section>
+  <section class="skills">
     <h2>技能</h2>
-    <ol>
-      <li>HTML 5 &amp; CSS 3</li>
-      <li>Javascript</li>
-      <li>jQery</li>
-      <li>Vue</li>
-      <li>React</li>
-      <li>HTTP</li>
+    <ol class="skills-list clearfix">
+      <li>
+        <span class="title">HTML 5 &amp; CSS 3</span>
+        <span class="bar">
+          <span class="bar-radio" style="width: 40%;"></span>
+        </span>
+      </li>
+      <li>
+        <span class="title">jquery</span>
+        <span class="bar">
+          <span class="bar-radio" style="width: 50%;"></span>
+        </span>
+      </li>
+      <li>
+        <span class="title">Vue</span>
+        <span class="bar">
+          <span class="bar-radio" style="width: 70%;"></span>
+        </span>
+      </li>
+      <li>
+        <span class="title">React</span>
+        <span class="bar">
+          <span class="bar-radio" style="width: 30%;"></span>
+        </span>
+      </li>
+      <li>
+        <span class="title">HTTP</span>
+        <span class="bar">
+          <span class="bar-radio" style="width: 20%;"></span>
+        </span>
+      </li>
     </ol>
   </section>
-  <section>
+  <section class="works">
     <h2>作品集</h2>
     <nav>
-      <ol>
+      <ol class="clearfix" id="worksList">
         <li>所有</li>
         <li>原生</li>
         <li>框架</li>
       </ol>
+      <div class="bar" id="bar">
+        <span class="bar-inner"></span>
+      </div>
     </nav>
     <div class="content">
-      <div class="all"></div>
-      <div class="app"></div>
-      <div class="mvvm"></div>
+      <div class="cont-item all">
+        <img src="./img/1.jpg" width="606" alt="全部">
+      </div>
+      <div class="cont-item app">
+        <img src="./img/2.jpg" width="293" alt="原生">
+      </div>
+      <div class="cont-item mvvm">
+        <img src="./img/3.jpg" width="293" alt="">
+      </div>
     </div>
   </section>
+  <script>
+    let oBox = document.querySelector('#worksList');
+    let aLi = oBox.querySelectorAll('li');
+    let oBar = document.querySelector('#bar');
+    let oHeader = document.querySelector('.header');
+
+    for (let i = 0; i < aLi.length; i++) {
+      aLi[i].onclick = function () {
+        oBar.className = 'bar status-' + (i + 1);
+      };
+    }
+
+    document.onscroll = function () {
+      let scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        oHeader.className = 'header header-scroll';
+      } else {
+        oHeader.className = 'header';
+      }
+    }
+  </script>
 </body>
 
 </html>
