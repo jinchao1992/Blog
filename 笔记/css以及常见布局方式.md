@@ -15,16 +15,16 @@ CSS，层叠样式表(英语：**C**ascading **S**tyle **S**heets)，是一种�
 
 周边工具
 
-* Less CSS 一种简化、功能更多的 CSS 语言
-* SASS 一种简化、功能更多的 CSS 语言
+* Less CSS 一种简化、功能更多的 CSS 语言 [中文官网](https://less.bootcss.com/) [英文官网](http://lesscss.org/)
+* SASS 一种简化、功能更多的 CSS 语言 [中文官网](http://sass.bootcss.com/)
 * Post CSS 一种 CSS 处理程序
 
 ## CSS 学习资源
 
 1. MDN 查询关键字，遇到不会的 CSS 属性就去查阅MDN
 2. [CSS Tricks](https://css-tricks.com/)，可以根据属性搜索很多好看的CSS效果；
-3. [Google: 阮一峰 css](https://www.google.com/search?q=阮一峰+css) 
-4. [张鑫旭的 240 多篇 CSS 博客](http://www.zhangxinxu.com/wordpress/category/css/page/25/) 
+3. [Google: 阮一峰老师 css](https://www.google.com/search?q=阮一峰+css) 
+4. [张鑫旭大神的 240 多篇 CSS 博客](http://www.zhangxinxu.com/wordpress/category/css/page/25/) 
 5. [Codrops 炫酷 CSS 效果](https://tympanus.net/codrops/category/playground/)
 6. [CSS揭秘](http://www.ituring.com.cn/book/1695)
 7. [CSS 2.1 中文 spec](http://cndevdocs.com/)
@@ -447,15 +447,15 @@ div {
     <div class="child">Demo</div>
   </div>
   <style>
-  	.parent {
-      border: 1px solid #ddd;
-      height: 100px;
-    }
-    .child {
-      display: table;
-      margin: 0 auto;
-      background: red;
-    }
+      .parent {
+          border: 1px solid #ddd;
+          height: 100px;
+      }
+      .child {
+          display: table;
+          margin: 0 auto;
+          background: red;
+      }
   </style>
   ```
 
@@ -466,16 +466,16 @@ div {
     <div class="child">Demo</div>
   </div>
   <style>
-  	.parent {
-      border: 1px solid #ddd;
-      height: 100px;
-      position: relative;
-    }
-    .child {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+      .parent {
+          border: 1px solid #ddd;
+          height: 100px;
+          position: relative;
+      }
+      .child {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+      }
   </style>
   ```
 
@@ -502,12 +502,12 @@ div {
     <div class="child">Demo</div>
   </div>
   <style>
-  	.parent {
-      display: flex;
-    }
-    .child {
-      margin: 0 auto;
-    }
+      .parent {
+          display: flex;
+      }
+      .child {
+          margin: 0 auto;
+      }
   </style>
   ```
 
@@ -522,17 +522,17 @@ div {
     <div class="child">demo3</div>
   </div>
   <style>
-  	.parent {
-      border: 1px solid #ddd;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-    }
-    .child {
-      background: red;
-      padding: 10px;
-      margin: 10px;
-    }
+      .parent {
+          border: 1px solid #ddd;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+      }
+      .child {
+          background: red;
+          padding: 10px;
+          margin: 10px;
+      }
   </style>
   ```
 
@@ -547,17 +547,17 @@ div {
     <div class="child">demo3</div>
   </div>
   <style>
-  	.parent {
-      border: 1px solid #ddd;
-      height: 100px;
-      text-align: center;
-    }
-    .child {
-      background: red;
-      padding: 10px;
-      margin: 10px;
-      display: inline-block;
-    }
+      .parent {
+          border: 1px solid #ddd;
+          height: 100px;
+          text-align: center;
+      }
+      .child {
+          background: red;
+          padding: 10px;
+          margin: 10px;
+          display: inline-block;
+      }
   </style>
   ```
 
@@ -567,13 +567,13 @@ div {
 
 * 定宽的浮动元素，通过设置子元素 `relative + 负margin`，原理如图：
 
-  ![gitHub](https://camo.githubusercontent.com/bc627dc8ad85de3662ce91ba23e3eec78d69c164/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031382f31302f31332f313636366466333831323761343830623f773d36353626683d33373226663d706e6726733d3134383336) 
+  ![gitHub](https://user-gold-cdn.xitu.io/2019/7/31/16c4609c428bc734?w=656&h=372&f=png&s=14836) 
 
  [demo](https://jsbin.com/luhokeh/12/edit?html,css,output)  **注意：样式设置在浮动元素的本身**
 
 * 不定宽的浮动元素，原理如图：
 
-  ![](https://camo.githubusercontent.com/a7d9c24ab2a0ad79aad1b8184711fd1e99d41c61/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031382f31302f31322f313636363930303334623338373665663f773d39333226683d32343526663d706e6726733d3235313630)
+  ![](https://user-gold-cdn.xitu.io/2019/7/31/16c4609c42a6b356?w=932&h=245&f=png&s=25160)
 
 [demo](https://jsbin.com/luhokeh/20/edit?html,css,output)
 
@@ -585,13 +585,13 @@ div {
   </div>
   <style>
   	.parent {
-      display:flex;
-      justify-content:center;
-    }
-    .chlid{
-      float: left;
-      width: 200px;// 有无宽度不影响居中
-    }
+          display:flex;
+          justify-content:center;
+      }
+      .chlid{
+          float: left;
+          width: 200px;// 有无宽度不影响居中
+      }
   </style>
   ```
 
@@ -610,11 +610,11 @@ div {
   <span>单行文本元素垂直居中</span>
 </div>
 <style>
-	.box {
-    height: 100px;
-    line-height: 100px;
-    border: 1px solid #ddd;
-  }
+    .box {
+        height: 100px;
+        line-height: 100px;
+        border: 1px solid #ddd;
+    }
 </style>
 ```
 
@@ -672,14 +672,14 @@ div {
   </div>
   <style>
   	.parent {
-      position: relative;
-    }
-    .child {
-      position: absolute;
-      top: 50%;
-      height: 100px;
-      margin-top: -50px;
-    }
+          position: relative;
+      }
+      .child {
+          position: absolute;
+          top: 50%;
+          height: 100px;
+          margin-top: -50px;
+      }
   </style>
   ```
 
@@ -691,13 +691,13 @@ div {
   </div>
   <style>
   	.parent {
-      position: relative;
-    }
-    .child {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+          position: relative;
+      }
+      .child {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+      }
   </style>
   ```
 
@@ -796,7 +796,8 @@ div {
 
 ## 后记
 
-以上就是总结的css 常见布局的一些方法，以及水平垂直居中的一些主要方法，以后会学习到 `grid` 布局，以及经常用的 css 小技巧，都统一会补充到文章里，或者其他文章中；也是站在一些前辈(大神)的基础上总结的一些技巧，以后多向大神们学习了！加油！
+这篇总结也是站在一些前辈(大神)的基础上总结的一些技巧、方法，他们的文章教会了我很多，学到了很多！希望以后可以达到他们所在的成就，加油吧！持续不断的学习（折腾！！！）<br />
+CSS 的学习是由易到难，越往后学，越觉得CSS的难点所在，所以不管是在平时的工作中还是在自己折腾的项目中都是需要重视CSS的书写，多多的尝试一些新的CSS属性以及更多的CSS布局，多多的总结吧！
 
  ## 参考文章
 
