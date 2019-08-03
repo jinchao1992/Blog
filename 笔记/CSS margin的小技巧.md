@@ -185,6 +185,42 @@ BFC 可以阻止边距的重叠。我们可以在父级元素上添加BFC，从�
 
 由于我们知道上下 `margin`会发生重叠，所以我们在网站布局时，会采用单独给一边加 `margin` 值的策略，要么是 `margin-top` 要么是 `margin-bottom` 这两个在布局时最好是一个元素上别同时存在，当然指的是相邻的元素。那如果是父子级身上的 `margin` 重叠的情况下，我们最好还是采用上述清除 `margin` 的办法，当然现代浏览器的发展以及一些布局方法的更新，我们可以采用 `flex` 布局 和 `grid` 布局 抛除掉 `margin` 的使用。当前具体问题还得具体分析，我相信我们做的例子多了 会有更深刻的认识。
 
+## 百分比 margin
+
+在 CSS 中使用百分比的时候，它必须是某个元素的百分比，也就是说我们必须有一个参考元素。使用百分比设置的 `margin(或者padding)` 始终是父元素内联大小（水平写入模式下单宽度）的百分比。 
+
+```html
+<div class="wrapper">
+  <div class="box">
+    I have a margin of 10%.
+  </div>
+</div>
+```
+
+```css
+ * {
+   box-sizing: border-box;
+ }
+ .wrapper {
+   border: 5px dotted black;
+   width: 200px;
+   height: 400px;
+ }
+ .box {
+   background-color: rgb(55, 55, 110);
+   color: white;
+   padding: 20px;
+   border-radius: .5em;
+   margin: 10%;
+ }
+ body {
+   font: 1.4em/1.3 "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+   margin: 2em 3em;
+ }
+```
+
+在线 [demo](https://jsbin.com/jajacam/1/edit?html,css,output)
+
 ## 后记
 
 只是简单的介绍了下，平时遇到 `margin` 重叠的几种情况，以及我们该如何处理。还是那句话， CSS 博大精深，虽然容易入门但是后期的东西真的是让我们随时随地的去学习了，所以我们在平时的学习过程中，要记得多加练习，多多总结。
@@ -192,4 +228,3 @@ BFC 可以阻止边距的重叠。我们可以在父级元素上添加BFC，从�
 ## 参考资料
 
 [关于 CSS margin，你需要知道的一切](https://juejin.im/post/5d40dc46e51d4561cf15df4a#heading-6)
-
