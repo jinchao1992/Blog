@@ -364,5 +364,5 @@ oImg.onerror = function() {
 
 ## 参考链接
 
-网道 HTML 篇：[https://wangdoc.com/html/](https://wangdoc.com/html/)
+[阮一峰网道HTML篇](https://wangdoc.com/html/)
 
