@@ -62,7 +62,7 @@
 
 ### CSS margin合并问题
 
-关于 `margin` 合并问题可以参照我写的这篇文章 [css-margin布局技巧]([https://jinchao1992.github.io/post/css-margin-%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7/](https://jinchao1992.github.io/post/css-margin-布局技巧/)) 这里就不列举了！
+关于 `margin` 合并问题可以参照我写的这篇文章 [css-margin布局技巧](https://jinchao1992.github.io/post/css-margin-布局技巧/) 这里就不列举了！
 
 ### 页面文档流
 
