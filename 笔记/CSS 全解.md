@@ -6,7 +6,7 @@
 
 `CSS` 盒模型是 `CSS` 的基础，也是我们在工作中会经常遗忘的点，基本上面试时都会被提及，那么什么是 `CSS` 盒模型呢？一起来看。
 
-我们知道网页是由 `html` 标签组成的，我们可以认为每个 `html` 标签都是一个小方块，小方块里面又套着小方块，就像是盒子一层层包裹一样，这就是所谓的盒模型了。也可以理解一个小模块就具备一个小盒模型。
+我们知道网页是由 `html` 标签组成的，我们可以认为每个 `html` 标签都是一个小方块，小方块里面又套着小方块，就像是盒子一层层包裹一样，这就是所谓的盒模型了。也可以理解为一个小模块就具备一个盒模型。
 
 #### 盒模型的组成
 
@@ -109,3 +109,141 @@
 
 ### 脱离文档流
 
+* 浮动元素可以脱离文档里；
+
+  ```css
+  .box {
+    float: left; /* 或者float:right */
+  }
+  ```
+
+  
+
+* 绝对定位元素与固定定位元素可以脱离文档流；
+
+  ```css
+  .box {
+    position: absolute; /*或者position: fixed;*/
+  }
+  ```
+
+脱离文档流后会造成高度塌陷，为什么呢？因为块级元素的高度是由里文档流元素决定的。
+
+### 布局分类
+
+布局是什么？布局的定义是，把页面分为一个个模块，并按照一定的格式组合排列，这就是布局。
+
+布局大致可以分为三类：
+
+* 固定宽度布局，一般宽度为 960/1000/1024/1200px等；
+* 不固定宽度布局，依靠文档流来实现；
+* 响应式布局，具体就是两套页面PC上固定宽度，手机上不固定宽度，称之为混合布局。
+
+### CSS 布局套路
+
+用下图可以简单表示：
+
+![image6](../images/item6.png)
+
+如果我们只做手机移动页面或者只兼容高级浏览器的话，可以直接使用 `flex` 布局。
+
+#### float 布局
+
+在现代浏览器中，`float`  布局显得不是那么重要了，因为可以通过 `flex` 或者 `grid` 写很少的代码就可以达到很复杂的布局，但是呢？因为存在浏览器兼容的问题，如必须兼容到 `IE8` 等，还是得用 `float` 布局。
+
+##### float 布局步骤
+
+* 在子元素上加上 `float:left;` 或 `float:right;` 并添加 `width`；
+* 重点： 在父元素上添加 `.clearfix` 类 用来清除浮动，因为不清除浮动会造成很大 `bug`;
+
+```html
+<style>
+ .clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .parent {
+    border: 1px solid red;
+  }
+  .child {
+    float: left;
+  }
+  .child:nth-child(1) {
+    width: 100px;
+    border: 3px solid blue;
+  }
+  .child:nth-child(2) {
+    border: 3px solid green;
+    float: right;
+  } 
+</style>
+<div class="parent clearfix">
+  <div class="child">left</div>
+  <div class="child">rigth</div>
+</div>
+```
+
+注意：通常最后一个 `float` 元素不添加宽度，让其自动响应；`display: inline-block;`元素需加上 `vertical-align:top`;
+
+##### float 布局示例
+
+* 两栏布局  [demo](https://jsbin.com/xuruceh/3/edit?html,css,output)
+* 三栏布局 [demo](https://jsbin.com/xuruceh/19/edit?html,css,output)
+* 平均布局 [demo](https://jsbin.com/xuruceh/24/edit?html,css,output)
+
+#### flex 布局
+
+移动互联网时代浮动布局是用的越来越少，紧接着出现的是 `flex` 布局与 `grid` 布局，由于 `grid` 布局本身的兼容性不是太好，所有目前用的最多的还是 `flex` 布局。一起来看 `flex` 布局是什么吧！
+
+`flex`  作用在两个模块身上，分别是 `container`(容器)  与 `items`(子元素) 如下图：
+
+![1.png](https://i.loli.net/2019/08/30/Y6NQaD9Ij8Bsv7q.png)
+
+##### flex container 样式
+
+* `display:flex` 元素变为弹性盒；
+* `flex-direction: row | row-reverse | column | column-reverse` 改变子元素流动方向（控制的方向叫主轴）
+  * `row` 默认样式，子元素横向排列  [demo](https://jsbin.com/xisopis/1/edit?html,css,output)
+  * `row-reverse` 子元素从右往左排 [demo](https://jsbin.com/xisopis/4/edit?html,css,output)
+  * `column` 子元素竖着排列 [demo](https://jsbin.com/xisopis/5/edit?html,css,output)
+  * `column-reverse` 子元素从下往上排列 [demo](https://jsbin.com/xisopis/19/edit?html,css,output)
+
+* `flex-wrap: nowrap | wrap | wrap-reverse` 控制子元素流动是否折行
+  * `nowrap` 默认样式，不折行，如果子元素过多则会一直去平分父元素宽度 [demo](https://jsbin.com/xisopis/18/edit?html,css,output)
+  * `wrap` 换行 [demo](https://jsbin.com/xisopis/17/edit?html,css,output)
+  * `wrap-reverse` 从下往上折行 [demo](https://jsbin.com/xisopis/15/edit?html,css,output)
+
+* `justify-content: flex-start | flex-end | center | sapce-between | space-around | space-evenly` 设置主轴对齐方式
+  * `flex-start` 默认样式，开始位置对齐 
+  * `flex-end` 结束位置对齐 [demo](https://jsbin.com/xisopis/21/edit?html,css,output)
+  * `center` 居中对齐（非常有用）[demo](https://jsbin.com/xisopis/22/edit?html,css,output)
+  * `space-between` 富裕空间放入两个元素之间 [demo](https://jsbin.com/xisopis/23/edit?html,css,output)
+  * `space-arount` 富裕空间平均放入在每个元素之间 [demo](https://jsbin.com/xisopis/26/edit?html,css,output)
+  * `space-evenly` 在一个元素与最后一个元素的留白是一样的，其余元素平分 [demo](https://jsbin.com/xisopis/28/edit?html,css,output)
+
+* `align-items: flex-start | flex-end | center | stretch ` 规定侧轴的对齐方式
+
+  * `flex-start` 默认样式，开始位置对齐
+  * `flex-end` 结束位置对齐 [demo](https://jsbin.com/xisopis/30/edit?html,css,output)
+
+  * `center` 侧轴居中对齐 [demo](https://jsbin.com/xisopis/31/edit?html,css,output)
+
+  * `stretch` 默认，侧轴两边对齐，如果子元素内容不一致时则会默认对齐最长的元素 [demo](https://jsbin.com/xisopis/34/edit?html,css,output)
+
+* `align-content: flex-start | flex-end | center | space-between | space-around | stretch`  多行内容对齐方式
+
+  * `flex-start` 整体靠上 [demo](https://jsbin.com/xisopis/36/edit?html,css,output)
+
+  * `flex-end` 整体靠下  [demo](https://jsbin.com/xisopis/38/edit?html,css,output)
+  * `center` 整体居中 [demo](https://jsbin.com/xisopis/40/edit?html,css,output)
+  * `space-between`  富裕空间在每一行中间 [demo](https://jsbin.com/xisopis/42/edit?html,css,output)
+
+  * `space-around` 富裕空间在每一行的两侧，平均分配 [demo](https://jsbin.com/xisopis/43/edit?html,css,output)
+
+##### flex item 样式
+
+* `order` 排序，子元素的 `order`默认是 0 设置值之后为从小到大排列，设置的越大就会排列到最后面，可以为负值，如果值相同的话按照 DOM 书写前后顺序排列 [demo](https://jsbin.com/xisopis/48/edit?html,css,output)
+* `flex-grow` 用来分配多余的空间给某个元素默认是 0  [demo](https://jsbin.com/xisopis/50/edit?html,css,output)
+* `flex-shrink` 用来处理空间不够时规定哪个元素缩小尺寸，默认是 1 ，注意：子元素必须是在同一行时才会起作用  [demo](https://jsbin.com/xisopis/52/edit?html,css,output)
+* `align-slef: flex-start | flex-end...` 规定单个元素的对齐位置，如果在父级元素身上设置了侧轴对齐方式，`align-self` 可以单独的规定某一个元素的侧轴对齐 
