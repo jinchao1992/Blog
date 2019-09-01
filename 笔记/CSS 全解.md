@@ -247,3 +247,99 @@
 * `flex-grow` 用来分配多余的空间给某个元素默认是 0  [demo](https://jsbin.com/xisopis/50/edit?html,css,output)
 * `flex-shrink` 用来处理空间不够时规定哪个元素缩小尺寸，默认是 1 ，注意：子元素必须是在同一行时才会起作用  [demo](https://jsbin.com/xisopis/52/edit?html,css,output)
 * `align-slef: flex-start | flex-end...` 规定单个元素的对齐位置，如果在父级元素身上设置了侧轴对齐方式，`align-self` 可以单独的规定某一个元素的侧轴对齐 
+
+#### grid 布局
+
+`grid` 布局是未来布局趋势，因为它本身的兼容问题，所以这里只是入门一下。
+
+`grid` 布局也分 `container` 和 `items` 。
+
+##### grid container 样式
+
+* `grid-template-columns` 规定列数和列数的宽度；
+* `grid-template-rows` 规定行数和行数的宽度；
+
+如下图示例：
+
+![item7](../images/item7.png)
+
+**重点：如上图所示，可以通过 `grid` 布局把空间分为三行五列，横向的线条数是4条，纵向的线条数是6条，这两个线条数必须记住，对于下面的代码介绍有用。我们还可以给每一根线条数起名字，名称随意；**
+
+线条取名示例代码：
+
+```css
+.container {
+  grid-template-columns: [first] 40px [line2] 50px [line3] auto
+  [col4-start] 50px [five] 40px [end];
+  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line]
+  auto [last-line];
+}
+```
+
+示例图：
+
+![item8](../images/item8.png)
+
+* 还可以给子元素设置为份数，代码示例：
+
+  ```css
+  .container {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  /*代表两行三列, 其中第二个独占两份*/
+  ```
+
+  * 示例1 [demo](https://jsbin.com/qewusoninu/10/edit?html,css,output)
+
+  * 示例2 (平均布局) [demo](https://jsbin.com/bonowavuxu/1/edit?html,css,output)
+
+* 设置 `items` 模块之间的距离可以使用 `grid-gap:10px;`  代表列与列之间，行一行之间都是 `10px` ，也可以单独设置列：`grid-column-gap: 10px;` 或者单独行 `grid-row-gap: 10px;`
+
+##### grid items 样式
+
+* `grid-column-start` 设置横向开始位置；
+* `grid-column-end` 设置横向结束位置；
+* `grid-row-start` 设置纵向开始位置；
+* `grid-row-end` 设置纵向结束位置；
+
+代码示例： [demo](https://jsbin.com/qewusoninu/6/edit?html,css,output)
+
+```html
+<style>
+	* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 50px 100px auto 40px 50px;
+    grid-template-rows: 100px 100px 100px;
+    border: 2px solid red;
+  }
+  .container > div {
+    border: 1px solid blue;
+  }
+  .a {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    /*表示a横向是从第一条线开始到第三条结束*/
+    grid-row-start: 1;
+    grid-row-end: 4;
+    /*表示a纵向是从第一条线开始到第四条结束*/
+  }
+</style>
+<div class="container">
+  <div class="a">a</div>
+  <div class="b">b</div>
+  <div class="c">c</div>
+  <div class="d">d</div>
+  <div class="e">e</div>
+</div>
+```
+
+经典布局示例1：[demo](https://jsbin.com/qewusoninu/8/edit?html,css,output)； 经典布局示例2： [demo](https://jsbin.com/fafotutoga/1/edit?html,css,output)
+
+
+
