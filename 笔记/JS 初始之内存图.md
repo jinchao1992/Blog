@@ -84,3 +84,82 @@ var person2 = person;
 
 ![18](../images/18.png)
 
+## JS 初始化的东西
+
+* `window`
+* `console` 挂载在 `window`上
+* `documen` 挂载在 `window`上
+* `Object` 挂载在 `window`上
+  * 声明对象可以用 `var person = {}` 或 `var person = new Object()`
+
+* `Array` 挂载在 `window`上，Array 是一种特殊的对象；
+  * 声明数组可以用 `var array = []` 或 `var array = new Array()`
+* `Function` 挂载在 `window` 上，`Function` 是一种特殊的对象；
+  * 声明方式：`function fn() {}`等价于 `fn = new Function()`
+
+### window里的是如何在内存中存储的？
+
+挂载在 `window` 里是为了方便使用，因为在任何地方都可以使用。
+
+`window` 内存分配草图：
+
+![19](../images/19.png)
+
+注意：`window.console` 指向或引用了这个对象，就是保存了一个地址；
+
+`console.dir(对象)` 可以打出对象的结构；如：`console.dir(window.Object)`
+
+![20](../images/20.png)
+
+上图就是打印的 `Object` 对象的构成；
+
+注意：变量与对象是不同东西，变量里可以存放对象的地址；
+
+### 原型链（prototype）
+
+ 先看一段代码 `console.dir(Object.prototype)` 的打印结果：
+
+![21](../images/21.png)
+
+再来看另外一段代码：
+
+```javascript
+var obj = {};
+obj.toString(); // 这里为什么可以调用，并没有在obj对象中写toString？？
+```
+
+以下原因可以说明：
+
+* `obj` 有一个隐藏属性，叫 `__proto__`;
+* 隐藏属性存储了 `Object.prototype` 对象的地址；
+* `obj.toString()`发现 `obj` 上没有 `toString` 就去隐藏属性里面找对应的 `toString`，然后就找到了`Object.prototype.toString`
+
+第三段代码：
+
+```javascript
+var obj2 = {};
+obj2.toString();
+// obj 与 obj2 有什么联系？
+```
+
+相同点，它们都可以调用 `.toString()` 方法已经更多的方法；
+
+不同点，它们指向的地址不同 `obj !== obj2` 有图作证：
+
+![22](../images/22.png)
+
+**结论：`Object.prototype`存储了`obj` 对象的共有属性，这就是原型，原型存在的意义就是无需声明重复的共有属性，省了代码又省了内存。** 
+
+**注意：每个对象都有一个隐藏的属性，指向了原型，如果没有隐藏属性的话，那么我们声明对象时就找不到共有属性，就需要规定一个对象写一堆属性，所以此隐藏属性非常重要，这个隐藏属性就叫做 `__proto__`。**
+
+#### `prototype 与 __proto__` 区别是什么？
+
+* 两者都存着原型的地址，`prototype` 挂载在函数上，`__proto__` 挂载在每个新生产的对象上；
+
+那么 `JS` 世界中，原型到底是个什么的存在呢？一图可以解决：
+
+![23](../images/23.png)
+
+## 结语
+
+`JS` 的大门开启了，学习 `JS` 内存世界后对之前的 `原型` 与 `原型链` 知识有了更加深刻的理解了，这只是一小步，`JS` 世界里还有更多更好玩的东西等待着。所以需要更加努力的学习了！！加油！！！
