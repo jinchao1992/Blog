@@ -41,7 +41,7 @@
 011110001011010 转换为 16进制
 1. 从右往左，每四位改写一位，四位分割后，如下格式：
   011 1100 0101 1010
-2. 分别用8421对应四位数值
+2. 分别用8421对应四位数值，忽略0对应的数字，然后把1对应的数字相加；
   011 1100 0101 1010
   421 8421 8421 8421 
    3   12   5    10
@@ -317,4 +317,164 @@ if (value) {...} else {...}
 * 如果一个变量声明了，但没有赋值，那么默认值就是 `undefined`, 而不是 `null`。
 * 如果一个函数，没有写 `return` 那么默认 `return undefined` ，而不是 `null`。
 * 在习惯上，把非对象的空值写为 `undefined`，把对象的空值写为 `null`。
+
+## JS 数据类型转换
+
+`JS` 在定义变量时，既定义了变量的值也定义了变量的类型，并且值和类型都是可以随意变化的。
+
+`JS` 又可以分为 **自动类型转换**与**强制类型转换**。
+
+### 强制类型转换
+
+强制转换主要是指使用 `Number()` 、`String()` 和 `Boolean()` 三个函数，手动将各种类型的值，分别转换为数字、字符串和布尔值。
+
+#### Number
+
+使用 `Number` 函数，可以将任意类型的值转换为数值（肯定包含`NaN`）。
+
+```js
+// 数值：转换还是原来的值
+Number(123); // 123
+
+// 字符串：如果可以被解析为数值，则转换为相应的数值，否则解析为NaN
+Number('456'); // 456 
+Number('324abc'); // NaN
+
+// 空字符串转换为 0
+Number(''); // 0
+
+// 布尔值： true 转换为1， false转换为0
+Number(false); // 0
+Number(true); // 1
+
+// undefined: 转换为NaN
+Number(undefined); // NaN
+
+// null: 转换为0
+Number(null) // 0
+```
+
+注意：字符串转换为数字时，还可使用 `parseInt`函数，但是 `Number`函数将字符串转换为数值时，要比 `parseInt` 函数严格的多的。只要有一个字符无法转换成数值，则整个字符串都会被转换为 `NaN`。
+
+`parseInt` 与 `Number` 函数都会自动过滤一个字符串前后空格。
+
+```js
+parseInt('\n\r\t12.31\n'); // 12
+Number('\n\r\t12.31\n'); // 12.31
+```
+
+#### String
+
+`String` 函数可以将任意类型的值转化为字符串，有如下转换规则：
+
+* **数值**：转为相应的字符串。
+* **字符串**：转换后还是原来的值。
+* **布尔值**：`true` 转换为字符串 `"true"`, `false` 转换为字符串 `"false"`。
+* **undefined**: 转换为字符串 `"undefined"`。
+* **null**: 转换为字符串 `"null"`。
+
+```js
+String(123); // "123"
+String('abc'); // "abc"
+String(false); // "false"
+String(undefined); // "undefined"
+String(null); // "null"
+```
+
+#### Boolean
+
+`Boolean` 函数可以将任意类型的值转换为布尔值。
+
+转换规则：除五个`falsy` 外，都会转换为 `true`。
+
+```js
+Boolean(undefined); // false
+Boolean(null); // false
+Boolean(0); // false
+Boolean(''); // false
+Boolean(NaN); // false
+Boolean('0'); // true
+```
+
+### 自动类型转换
+
+自动类型转换是以强制类型转换为基础的。
+
+以下三种情况，`JS` 会进行自动类型转换，即转换是自动完成的，用户不可见。
+
+* 不同类型之间的数据互相转换
+
+  ```js
+  123 + abc  // "123abc"
+  123 * '1' // 123
+  ```
+
+* 对于非布尔值的类型数据求布尔值
+
+  ```js
+  if (abc) {
+    console.log('hi');
+  }
+  // if 判断条件会自动转换布尔值
+  ```
+
+* 对于非数值类型的值使用一元运算符（`+` 和 `-`）
+
+  ```js
+  +'abc' // NaN
+  +'123' // 123
+  -'123' // -123
+  ```
+
+自动转换规则：预期什么类型的值，就该调用该类型的转换函数。比如，预期为字符串就调用`String` 函数进行转换。如果该位置即可以是字符串，也可能是数值，那么默认就会转为数值。
+
+#### 转换为布尔值示例
+
+```js
+if ( !undefined
+  && !null
+  && !0
+  && !NaN
+  && !''
+) {
+  console.log('true');
+} // true
+// 还可以用 !!
+!!0 // false
+!!1 // true
+!!'' // false
+!!undefined // false
+```
+
+#### 转换为字符串示例
+
+```js
+5 + '1' // "51"
+'5' + false // "5false"
+'5' + true // "5true"
+'5' + undefined // "5undeined"
+'5' + null // "5null"
+```
+
+#### 转换为数值示例
+
+```js
+'5' - '2' // 3
+'2' * '5' // 10
+true - 1 // 0
+false - 2 // -2
+'1' - 1 // 0
+false / '5' // 0
+'abc' - 1 // NaN
+null + 2 // 2
+undefined + 2 // NaN
+```
+
+运算符两侧都被转换为数值。
+
+## 参考资料
+
+* [网道-数据类型转换](https://wangdoc.com/javascript/features/conversion.html)
+
+* [网道-JS数据类型](https://wangdoc.com/javascript/types/index.html)
 
