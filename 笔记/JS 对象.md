@@ -47,7 +47,7 @@ let obj2 = {
 };
 ```
 
-注意：`Object.keys(obj)` 可以打印出对象的键值集合。
+重点：`Object.keys(obj)` 可以打印出对象的键值集合。
 
 ```js
 let obj = {
