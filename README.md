@@ -14,3 +14,5 @@
 ### JS 相关
 * [JS 内存图](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E5%88%9D%E5%A7%8B%E4%B9%8B%E5%86%85%E5%AD%98%E5%9B%BE.md)
 * [JS 语法入门](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8.md)
+* [JS 数据类型与运算](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97.md)
+* [JS 对象入门笔记](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E5%AF%B9%E8%B1%A1.md)
