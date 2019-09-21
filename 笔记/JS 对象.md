@@ -1,6 +1,6 @@
 ## 前言
 
-`Javascript` 有七种数据类型，分别是： `number`、`string`、`boolean`、`symbol`、`undefined`、`null`、`object`。其中除 `object` 外都为简单类型，`object` 为复杂类型。所以学好 `object` 非常重要，而且也是 `JavaScript` 中的难点。
+`Javascript` 有七种数据类型，分别是： `number`、`string`、`boolean`、`symbol`、`undefined`、`null`、`object`。其中除 `object` 外都为简单类型，`object` 为复杂类型。对象是 `JavaScript` 中的难点，也是学好 `JavaScript` 必须具备的知识，所以学好对象非常重要，那么一起来看吧。
 
 ## 对象
 
