@@ -1,6 +1,6 @@
 ## 前言
 
-`Javascript` 有七种数据类型，分别是： `number`、`string`、`boolean`、`symbol`、`undefined`、`null`、`object`。其中除 `object` 外都为简单类型，`object` 为复杂类型。所以学好 `object` 非常重要，而且也是 `JavaScript` 中的难点。
+`Javascript` 有七种数据类型，分别是： `number`、`string`、`boolean`、`symbol`、`undefined`、`null`、`object`。其中除 `object` 外都为简单类型，`object` 为复杂类型。对象(object)是 `JavaScript` 中的难点，也是学好 `JavaScript` 必须具备的知识，所以学好对象非常重要，那么一起来看吧。
 
 ## 对象
 
@@ -285,7 +285,7 @@ console.log(obj2.country); // "中国"
 
 #### 对象的强制类型转换
 
-在之前的文章中介绍过[数据类型转换]() ,只是介绍了基本类型之间的转换，并没有涉及对象，因为对象比较复杂，现在一起来看看对象是如何进行转换的吧！
+在之前的文章中介绍过[数据类型转换](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97.md) ,只是介绍了基本类型之间的转换，并没有涉及对象，因为对象比较复杂，现在一起来看看对象是如何进行转换的吧！
 
 ##### 对象转换为数字
 
