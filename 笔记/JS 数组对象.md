@@ -173,3 +173,156 @@ console.log(arr); // [1, 222, 2, 3, 4, 5, 6]
 
 ## 查看数组元素
 
+* 使用 `for` 循环（常见）
+
+  ```js
+  let arr = [1, 2, 3, 4, 5]
+  for (let i = 0; i < arr.length; i++) {
+    console.log(`${i}: ${arr[i]}`);
+  }
+  ```
+
+* 使用 `forEach` 循环
+
+  ```js
+  let arr = [1, 2, 3, 4, 5]
+  arr.forEach((item, index) => {
+    console.log(`${index} : ${item}`);
+  });
+  ```
+
+  使用 `for` 循环模拟 `forEach`
+
+  ```js
+  function forEach(array, fn) {
+    for(let i = 0; i < array.length; i++) {
+      fn(array[i], i, array);
+    }
+  }
+  let arr = [1,2,3,4];
+  forEach(arr, function(item, index, arr) {
+     console.log(item); // 1,2,3,4
+     console.log(index); // 0,1,2,3
+     console.log(arr); // [1,2,3,4]
+  });
+  ```
+
+  **注意：在使用 `forEach` 时，不能使用 `break` 与 `continue`**
+
+### 查看数组单个属性
+
+```js
+let arr = [1,2,3,4];
+arr[0]; // 1, 这里的下标 0 是字符串， js 会自动转换为字符串
+arr['1']; // 2
+arr[arr.length]; // undefined
+arr[-1]; // undefined
+```
+
+注意：如果下标小于0，或者大于等于数组的长度，则返回 `undefined` 。
+
+* `indexOf()` 与 `lastIndexOf()`  都是用于查找元素在数组中出现的位置，如果找不到则返回 `-1` 。`indexOf()` 方法返回的是元素第一次出现的位置，`lastIndexOf()`  返回的是元素最后一次出现的位置。
+
+  ```js
+  let arr = ['a', 'b', 'c'];
+  arr.indexOf('b'); // 1
+  arr.indexOf('d'); // -1
+  let arr2 = [1, 2, 3, 1];
+  arr2.lastIndexOf(1); // 3
+  arr2.lastIndexOf(9); // -1
+  ```
+
+* `find()` 方法返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 `undefined`。
+
+  ```js
+  let arr = [5, 12, 8, 130, 45, 44];
+  arr.find(item => item % 5 === 0); // 5
+  ```
+
+* `findIndex()` 方法返回数组中满足提供测试函数的第一个元素的**索引**。否则返回 -1。
+
+  ```js
+  let arr = [5, 12, 8, 130, 45, 44];
+  arr.findIndex(item => item % 5 === 0); // 0
+  ```
+
+## 增加数组元素
+
+* `push()` 方法用于在数组的尾部添加一个或者多个元素，并返回数组的长度。该方法会改变原数组。
+
+  ```js
+  let arr = [];
+  arr.push(1);
+  arr.push(2,3,4);
+  arr.push(true, {});
+  console.log(arr); // [1, 2, 3, 4, true, {}]
+  ```
+
+* `unshift()` 方法用于在数组的头部添加一个或者多个元素，返回数组的长度。该方法会改变原数组。
+
+  ```js
+  let arr = [1, 2, 3];
+  arr.unshift('a'); 
+  arr.unshift('b', 'c');
+  console.log(arr); // ['b', 'c', 'a', 1, 2, 3]
+  ```
+
+## 修改数组
+
+* `reverse()` 方法用于反转数组元素，返回改变后的数组。该方法会改变原数组。
+
+  ```js
+  let arr = ['a', 'b', 'c'];
+  arr.reverse(); 
+  console.log(arr); // ['c', 'b', 'a']
+  ```
+
+* `sort()` 方法对数组元素进行排序。排序后原数组会发生改变。
+
+  ```js
+  let arr = [11, 101];
+  arr.sort();
+  console.log(arr); // [101, 11]
+  ```
+
+  如果不给 `sort()` 方法指定排序方法，数字会先转换为字符串，再按照字典顺序进行比较，所以 `101` 排在 `11` 的前面。
+
+  可以给 `sort` 方法传入一个函数，自定义排序：
+
+  ```js
+  let arr = [10111, 1101, 111];
+  arr.sort(function (a, b) {
+     return a - b;
+  });
+  console.log(arr); // [111, 1101, 10111]
+  ```
+
+  `sort` 的参数接收两个参数，表示进行比较的两个数组的成员。如果该函数的返回值大于 0 ,则表示第一个成员排在第二个成员的后面，其他情况下都是第一个元素排在第二个元素的前面。
+
+  也可以指定字段进行排列：
+
+  ```js
+  let arr = [
+    { name: "张三", age: 30 },
+    { name: "李四", age: 24 },
+    { name: "王五", age: 28  }
+  ];
+  arr.sort(function(a, b) {
+    return a.age - b.age
+  });
+  console.log(arr); 
+  /*
+    [
+    	{ name: "李四", age: 24 },
+    	{ name: "王五", age: 28 },
+    	{ name: "张三", age: 30 },
+    ]
+  */
+  ```
+
+## 数组变换
+
+
+
+
+
