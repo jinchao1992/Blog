@@ -1,6 +1,4 @@
-## 前言
-
-数组其实是一种特殊的对象。`JS` 中并没有正真的数组，都是用对象去模拟的。
+数组其实是一种特殊的对象。`JS` 中并没有正真的数组，都是用对象去模拟的。如果是前后端分离开发，那么对于数组的处理，将会影响到对数据处理的方方面面，所以对于数组的处理以及把控就显得至关重要啦！
 
 ```js
 typeof [1,2,3]; // "object" 数组的类型是一个对象
@@ -8,7 +6,7 @@ typeof [1,2,3]; // "object" 数组的类型是一个对象
 
 ## 定义数组
 
-### 常用创建数组
+### 常规方法创建数组
 
 ```js
 let arr = [1, 2, 3];
@@ -16,7 +14,7 @@ let arr2 = new Array(1, 2, 3);
 let arr3 = new Array(3); // 如果参数只有一个，则代表是数组的长度
 ```
 
-### 转化创建的数组
+### 通过转换创建的数组
 
 ```js
 let str = '1, 2, 3';
@@ -24,7 +22,7 @@ let arr = str.split(','); // 通过 split 分割数组
 let arr2 = Array.from('123'); // [1,2,3], es6 新增方法
 ```
 
-#### Array.from
+#### Array.from是什么？
 
 > `Array.from` 方法用于将两类对象转为真正的数组：类似数组的对象和可便利的对象。
 
@@ -56,7 +54,7 @@ let arr = Array.from(arrayLike); // ['a', 'b', 'c', 'd']
 </script>
 ```
 
-### 合并数组创建
+### 通过合并方法创建数组
 
 ```js
 let arr1 = [1,2,3];
@@ -68,7 +66,7 @@ console.log(arr1); // [1, 2, 3]
 
 上述代码中可以得出，`concat` 不会改变原数组而是新生成数组；
 
-### 截取数组创建
+### 通过截取方法创建数组
 
 * `slice` 方法用于截取目标数组的一部分，返回一个新数组，原数组不变。
 
@@ -322,7 +320,30 @@ arr[-1]; // undefined
 
 ## 数组变换
 
+* `map()` 方法，将数组的所有成员依次传入参数函数，然后每一次的执行结果组成一个新数组返回。**返回的数组中的元素并不会减少；** 注意：该方法并不会更改原始数组！
 
+  ```js
+  let arr = [1, 2, 3];
+  let arr2 = arr.map(item => item * 2)
+  console.log(arr2); // [2, 4 ,6]
+  console.log(arr); // [1, 2, 3]
+  ```
 
+* `filter()` 方法，用于过滤数组成员，满足条件的成员组成一个新的数组返回，如果条件不满足则返回空数组。 **返回的数组元素会减少；** 注意：该方法不会改变原始数组！
 
+  ```js
+  let arr = [1, 2, 3, 4, 5, 6];
+  let arr2 = arr.filter(item => item % 2 === 0)
+  console.log(arr2); // [2, 4 ,6]
+  console.log(arr); // [1, 2, 3, 4, 5, 6]
+  
+  let arrBooolean = [0, 1, 'a', false, '', undefined, null, NaN]
+  let arrNew = arrBooolean.filter(Boolean); // [1, a]
+  ```
+
+* `reduce()` 方法，该方法会依次处理数组的每一个成员，最终累计一个值。接收两个参数，第一个参数时回调函数，第二个参数则是初始值。该方法比较复杂，推荐一篇文章可以延伸阅读 [reduce 实用指南](https://juejin.im/post/5bab8a9c6fb9a05d0e2e6bf0)。
+
+## 参考资料
+
+[阮一峰网道教程 Array 对象](http://wangdoc.com/javascript/stdlib/array.html)
 
