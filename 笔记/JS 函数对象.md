@@ -163,7 +163,7 @@ for(let i = 0; i < 6; i++) {
 function fn() {
   let a = 1
 }
-console.log(a); // a is not defined, 第一函数没执行，第二a是fn的局部变量
+console.log(a); // a is not defined, 第一函数没执行，如果函数执行 a 也是局部变量
 ```
 
 例子2：
@@ -336,4 +336,311 @@ add2(1,2)
   注意：函数只有在执行后才会有返回值。
 
 ### 调用栈（重点）
+
+什么是调用栈？`JS` 引擎在调用函数前会做一些操作 。具体如下：
+
+* 需要把函数所在的环境 `push` 到一个数组里；
+* 这个数组就叫做调用栈；
+* 等函数执行完毕，就会把环境弹出来；
+* 然后 `return` 到之前的环境中，继续执行后续代码；
+
+```js
+console.log(1);
+console.log('1+2的结果为' + add(1, 2));
+console.log(2);
+```
+
+上述代码的调用栈是怎么样的呢？如下草图：
+
+![](../images/41.jpg)
+
+从上面的草图可以看到，每一次的函数执行都是严格按照上述的步骤进行的操作，但是会不会有这么一种情况，一直在压栈，栈会不会溢出，也就是说会不会满了呢？这就需要引进递归的概念。
+
+#### 递归
+
+```js
+function fn(n) {
+  return n !== 1 ? n * fn(n-1) : 1
+}
+// 这是一个阶乘函数
+```
+
+```js
+// 解析执行函数
+fn(4)
+= 4 * fn(3)
+= 4 * (3 * fn(2))
+= 4 * (3 * (2 * fn(1)))
+= 4 * (3 * (2 * (1)))
+= 4 * (3 * (2))
+= 4 * (6)
+24
+
+// 递归，就是先递进再回归
+```
+
+递归函数的调用栈很长，可能会出现栈溢出的情况，也就是**爆栈**。每个浏览器的调用栈的最大值都不一样，可以通过以下代码求出不同浏览器的最大值:
+
+ ```js
+function computeMaxCallStackSize() {
+  try {
+    return 1 + computeMaxCallStackSize();
+  } catch (e) {
+    return 1;
+  }
+}
+ ```
+
+### 函数提升
+
+```js
+fn(); // 打印1
+function fn() {
+  console.log(1)
+}
+```
+
+不管**具名函数**声明在哪里，它都会跑到第一行。
+
+```js
+fn(); // 报错 Cannot access 'fn' before initialization
+let fn = function () {console.log(1)}
+// 这里的fn是赋值，是函数表达式
+```
+
+### arguments 与 this
+
+每个函数都有 `arguments` 与 `this` ,除箭头函数外。
+
+```js
+function fn() {
+  console.log(arguments); // [1, 2] 伪数组
+}
+fn(1, 2);
+```
+
+`argument` 关键字是一个参数组成的伪数组，并没有数组的共有属性。可以通过 `Array.from` 转换为真正的数组。
+
+只有函数调用时，`arguments` 才能起作用。
+
+```js
+function fn() {
+  console.log(this); // js在未指定this时默认是window
+}
+fn();
+```
+
+可以用 `.call` 方法显示的指定函数的 `this`。
+
+```js
+function fn2() {
+  console.log(this) // 对象 {name: 'Jacky'}
+}
+fn2.call({name: 'Jacky'})
+```
+
+```js
+let person = {
+  name: 'Tom',
+  sayHi: function() {
+    console.log(this.name); // 'Jacky'
+  }
+}
+person.sayHi.call({name: 'Jacky'})
+```
+
+`.call` 方法的第一个参数是需要指向的 `this` 对象，剩余参数则是函数的实参。
+
+```js
+function add(x, y) {
+  return x + y
+}
+add.call(undefined, 1, 2); // 3
+```
+
+如上代码，在使用 `call` 方法时，第一个参数作为 `this` , 但是代码中并没有用到 `this` 只能用 `undefined` 或者 `null` 占位。
+
+```js
+Array.prototype.forEach2 = function(fn) {
+  for (let i = 0; i < this.length; i++) {
+    fn(this[i], i);
+  }
+};
+let arr = [1, 2, 3]
+arr.forEach2.call(arr, (item, index) => {
+  console.log(item); // 1  2 3
+  console.log(index); // 0 1 2
+});
+```
+
+上述代码实现了简易版 `JS` 原生方法 `forEach` 的写法。可以通过 `call` 方法指定不同的 `this`。
+
+#### this 的两种使用方法
+
+* 隐式传递
+
+  ```js
+  fn(1, 2); // 等价于 fn.call(undefined, 1, 2)
+  obj.child.fn(1); // 等价于 obj.child.fn.call(obj.child, 1);
+  ```
+
+* 显示传递
+
+  ```js
+  fn.call(undefined, 1, 2);
+  fn.apply(undefined, [1, 2]);
+  ```
+
+  `apply` 方法与 `call` 一样都是可以修改 `this` 指向，只有后续的传参不一样，`apply`  方法时把后续的参数都放如一个数组中，而 `call`方法的参数则是一个个传。
+
+#### this 绑定
+
+```js
+function fn1(p1, p2) {
+  console.log(this); // {name: 'Jacky'}
+  console.log(p1); // undefined 因为p1没传参
+  console.log(p2); // undefined 因为p2没传参
+}
+let fn2 = fn1.bind({name: 'Jacky'})
+fn2();
+// fn2 是 fn1 绑定之后的新函数
+// fn2() 等价于 fn1.call({name: 'Jacky'})
+```
+
+`bind` 方法可以绑定其他参数
+
+```js
+function fn1(p1, p2) {
+  console.log(this); // {name: 'Jacky'}
+  console.log(p1); // 'hi'
+  console.log(p2); // 'hello'
+}
+let fn3 = fn1.bind({name: 'Jacky'}, 'hi', 'hello')
+fn3();
+// fn3() 等价于 fn1.call({name: 'Jacky'}, 'hi', 'hello')
+```
+
+## 箭头函数
+
+箭头函数没有 `arguments` 与 `this`。
+
+```js
+let fn = () => console.log(arguments);
+fn(1, 2, 3); // arguments is not defined
+```
+
+箭头函数的 `this` 是由外部的 `this` 确定的。
+
+```js
+console.log(this) // window
+let fn = () => console.log(this)
+fn(); // window
+```
+
+箭头函数的 `this` 一旦确立下来，便不会再次改变除非是外部的 `this` 改变了。
+
+```js
+console.log(this) // window
+let fn = () => console.log(this)
+fn.call({name: 'jacky'}); // window
+```
+
+## 立即执行函数
+
+在 `ES5` 时，如果为了得到一个局部变量需要在一个函数作用域里声明，如下：
+
+```js
+function fn() {
+  var a = 1;
+  console.log(a)
+}
+fn(); // 1
+```
+
+虽然这样可以声明了一个局部变量，但是紧接着又造成了另外的问题，就是多出一个全局的函数执行来。`fn` 为全局函数。
+
+那如果是匿名函数，然后立即执行呢？这样不会是全局函数了。如下代码：
+
+```js
+function () {
+  var a = 1;
+  console.log(a)
+}() 
+```
+
+那不好意思上述的代码语法 `JS` 是报错的，但是在某些语法格式下是不报错并且是执行的。
+
+```js
++ function () {
+  var a = 1;
+  console.log(a)
+}() // 1
+
+- function () {
+  var a = 1;
+  console.log(a)
+}() // 1
+
+1* function () {
+  var a = 1;
+  console.log(a)
+}() // 1
+
+! function () {
+  var a = 1;
+  console.log(a)
+}() // 1
+```
+
+匿名函数立即执行，这就是立即执行函数，可以把 `JS` 的作用域缩小在此匿名函数中，而不会造成全局的污染，推荐使用 `!` 来执行。
+
+## 总结
+
+每个函数都有以下的几个特点：
+
+*  调用时机
+* 作用域
+* 闭包
+* 形式参数
+* 调用栈
+* 返回值
+* 函数提升
+* arguments（除箭头函数外）
+* this （除箭头函数外）
+
+## 经典面试题
+
+```js
+let i = 0;
+for(i = 0; i < 6; i++) {
+  setTimeout(() => {
+    console.log(i)
+  }, 0)
+}
+```
+
+上述代码输出什么？答案：6个6。`setTimeout` 方法的意思是一段时间后执行后续的操作，那一段时间是什么呢？就是等所有的代码执行完毕之后，我再执行。是一个异步的操作。当前执行的代码就是 `for` 循环，当执行完毕之后 `i` 的值已经变为 `6` 所以再进行 `setTimeout` 就是打印6个6。
+
+```js
+for(let i = 0; i < 6; i++) {
+  setTimeout(() => {
+    console.log(i)
+  }, 0)
+}
+```
+
+上述代码输出什么？答案：`0,1,2,3,4,5` 依次打出。具体原因参考[let与const](https://jinchao1992.github.io/2019/09/js-变量声明之let与const/)这篇文章。
+
+那么如果我不想用第二种写法来实现打印出 `0,1,2,3,4,5` 怎么做呢？如下代码：
+
+```js
+let i = 0;
+for(i = 0; i < 6; i++) {
+  !function(i) {
+     setTimeout(() => {
+      console.log(i)
+     }, 0)
+  }(i)
+}
+```
 
