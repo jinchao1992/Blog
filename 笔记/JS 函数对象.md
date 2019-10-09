@@ -644,3 +644,7 @@ for(i = 0; i < 6; i++) {
 }
 ```
 
+##  延伸阅读
+
+[【JS 口袋书】第 3 章：JavaScript 函数](https://juejin.im/post/5d9d21a7f265da5ba74524a4)
+
