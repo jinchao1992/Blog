@@ -18,3 +18,6 @@
 * [JS 对象入门笔记](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E5%AF%B9%E8%B1%A1.md)
 * [JS 变量声明之let与const](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E4%B9%8Blet%E4%B8%8Econst.md)
 * [JS 函数对象](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.md)
+* [JS 算法入门1](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/JS%20%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A81.md)
+### 其他
+* [如何使用hugo快速搭建博客](https://github.com/jinchao1992/Blog/blob/master/%E7%AC%94%E8%AE%B0/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%94%A8Hugo%E5%92%8CGitPage%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2.md)
