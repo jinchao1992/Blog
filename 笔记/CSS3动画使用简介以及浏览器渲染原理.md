@@ -31,7 +31,7 @@
 }
 ```
 
-在线 [demo]
+在线 [demo](https://jsbin.com/kibekusuyi/2/edit?html,css,output)
 
 上面说到动画缓动类型，一个例子可以简单的理解，在线[demo](https://jsbin.com/tagupevaqe/4/edit?html,css,output)
 
@@ -155,3 +155,4 @@ demo.remove();
 
 * 使用 `requestAnimationFrame` 代替 `setTimeout` 或 `setInterval`（JS方面）。
 * 使用 `transform` 的位移代替  `left/right/top/bottom` 等（CSS方面）；
+
