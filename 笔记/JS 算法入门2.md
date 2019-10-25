@@ -51,24 +51,29 @@ let swap = (arr, i, j) => {
 快速排序的核心思想就是，找准一个基准值，一般都是中间值。然后比这个基准值大的放右边，比这个数小的放左边。然后再找，再排，以此类推。
 
 ```js
-let quickSort = arr => {
-  let (arr.length <= 1) {
-    return
+let arrold = [3, 5, 4, 2, 1]
+let quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
   }
-  let pivoIndex = Math.floor(arr.length / 2)
-  let pivot = arr.splice(pivoIndex, 1)[0]
+  
+  let centerIndex = Math.floor(arr.length / 2)
+  let centerVal = arr.splice(centerIndex, 1)[0]
   let leftArr = []
   let rightArr = []
   
- 	for(let i = 0; i < arr.length; i++) {
-    if(arr[i] < pivot) {
+  for(let i = 0; i <arr.length; i++) {
+    if (arr[i] < centerVal) {
       leftArr.push(arr[i])
     } else {
       rightArr.push(arr[i])
     }
   }
-  return quickSort(leftArr).concat([pivot], quickSort(rightArr))
+  
+  return quickSort(leftArr).concat([centerVal], quickSort(rightArr))
 }
+
+console.log(quickSort(arrold))
 ```
 
 
