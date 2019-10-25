@@ -49,38 +49,27 @@ let swap = (arr, i, j) => {
 快速排序的核心思想就是，找准一个基准值，一般都是中间值。然后比这个基准值大的放右边，比这个数小的放左边。然后再找，再排，以此类推。注意：当数组长度小于等于1时，就直接把这个数组返回出去。这是递归的终止条件。
 
 ```js
-<<<<<<< HEAD
-let arrold = [3, 5, 4, 2, 1]
-let quickSort = (arr) => {
-  if (arr.length <= 1) {
-    return arr;
-=======
-let quickSort = arr => {
-  if (arr.length <= 1) {
-    // 递归终止
-    return arr
->>>>>>> e1e38c5403ff87b184df8848b492ff1a248d6ae3
+let quickSort = (numbers) => {
+  if (numbers.length <= 1) {
+    return numbers;
   }
+  let index = Math.floor(numbers.length / 2)
+  let indexVal = numbers.splice(index, 1)[0]
   
-  let centerIndex = Math.floor(arr.length / 2)
-  let centerVal = arr.splice(centerIndex, 1)[0]
   let leftArr = []
   let rightArr = []
   
-<<<<<<< HEAD
-  for(let i = 0; i <arr.length; i++) {
-    if (arr[i] < centerVal) {
-      leftArr.push(arr[i])
-=======
-  for(let i = 0; i < arr.length; i++) {
-      if(arr[i] < pivot) {
-          leftArr.push(arr[i])
-      } else {
-          rightArr.push(arr[i])
-      }
+  for(let i = 0; i < numbers.length; i++) {
+    if (numbers[i] < indexVal) {
+      leftArr.push(numbers[i])
+    } else {
+      rightArr.push(numbers[i])
+    }
   }
-  return quickSort(leftArr).concat([pivot], quickSort(rightArr))
+  return quickSort(leftArr).concat([indexVal], quickSort(rightArr))
 }
+
+console.log(quickSort(arr))
 ```
 
  ## 归并排序
@@ -120,6 +109,10 @@ console.log(mergeSort(arr))
 
 ## 计数排序
 
+如下图，原理的一个解释：
+
+<img src="../images/52.jpg" style="zoom:80%;" />
+
 代码如下：
 
 ```js
@@ -128,7 +121,6 @@ let countSort = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     if(!(arr[i] in hashTable)) {
       hashTable[arr[i]] = 1
->>>>>>> e1e38c5403ff87b184df8848b492ff1a248d6ae3
     } else {
       hashTable[arr[i]] += 1
     }
@@ -136,13 +128,7 @@ let countSort = (arr) => {
       max = arr[i]
     }
   }
-<<<<<<< HEAD
   
-  return quickSort(leftArr).concat([centerVal], quickSort(rightArr))
-}
-
-console.log(quickSort(arrold))
-=======
   for(let j = 0; j <= max; j++) {
     if(j in hashTable) {
       for(let i = 0; i < hashTable[j]; i++) {
@@ -150,14 +136,15 @@ console.log(quickSort(arrold))
       }
     }
   }
-  
   return result
 }
+
 console.log(countSort(arr))
->>>>>>> e1e38c5403ff87b184df8848b492ff1a248d6ae3
 ```
 
-## 后记
 
- https://jsbin.com/kuseluvopu/1/edit?js,output 
+
+## 所有排序代码
+
+https://jsbin.com/sajuhojoju/2/edit?js,console,output
 
