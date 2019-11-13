@@ -44,7 +44,7 @@ console.log(store.state.count);
 
 ### State是什么？
 
-`Vuex` 使用的是单一的状态树。所有的「数据源」都存放在 `state` 中。单一的状态树让我们能够直接的定位任一特定的状态片段，在调试的过程中也能轻易地取得整个当前应用状态的快照。
+`Vuex` 使用的是单一的状态树。所有的「数据源」都存放在 `state` 中。也就是说我们只能操作 `state` 中的数据。
 
 #### 如何在组件中获取Vuex的状态
 
@@ -158,7 +158,7 @@ export default {
 }
 ```
 
-如果我们想在多个组件当中使用这个属性，要么整体复制此方法，要么写一个公共的方法，用到时再导入。其实在 `Vuex` 中已经可以处理此类逻辑了，那就是使用 `getters`，我们把它认为是 `store` 的计算属性。跟计算属性一样，`getter` 的返回值也会根据它依赖的数据被缓存起来，当依赖的数据发生变化的时候才会被重新计算。
+如果我们想在多个组件当中使用这个属性，要么整体复制此方法，要么写一个公共的方法，用到时再导入。两种方法都可以，就是稍稍有点费劲，既然使用了 `Vuex` ，在`Vuex` 中有没有可以处理的方法呢？有的，在 `Vuex` 中已经可以处理此类逻辑了，那就是使用 `getters`，我们把它认为是 `store` 的计算属性。跟计算属性一样，`getter` 的返回值也会根据它依赖的数据被缓存起来，当依赖的数据发生变化的时候才会被重新计算。
 
 `getters` 接收 `store` 作为它的第一个参数：
 
@@ -372,10 +372,14 @@ export default {
   ...
   methods: {
     ...mapMutation([
-      'addCount',
-      'delCount'
-    ])
+      'add', // 这里是将 `this.add` 映射为 this.$store.commit('add')
+      'del' // 这是是将 `this.del` 映射为 this.$store.commit('del')
+    ]),
+    ...mapMutation({
+      addCount: 'add' // 将 this.addCount 映射为 this.$store.commit('add')
+    })
   }
 }
 ```
 
+### 异步操作 Action
