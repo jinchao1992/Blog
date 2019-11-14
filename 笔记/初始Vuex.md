@@ -383,3 +383,94 @@ export default {
 ```
 
 ### 异步操作 Action
+
+`action` 跟 `mutation` 功能几乎一样，但是 `action` 是用来处理异步的。最近接手的代码中，所有的 `AJAX` 请求都放在了 `action` 中来进行处理。
+
+```js
+const store = new Vue.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    add (state) {
+      state.count++
+    }
+  },
+  actions: {
+    add ({ commit }) {
+      commit('add')
+    }
+  }
+})
+```
+
+在 `Action` 函数中需要接受一个包含了与 `store`实例相同属性和方法的 `content` 对象，如：`commit/state/getters` 等。因此我们可以在 `content` 方法中去使用
+
+`commit` 来提交 `mutation`。
+
+#### 如何分发Action
+
+`Vuex` 中通过 `store.dispatch` 方法触发调用 `action`。跟 `mutation` 一样在调用的时候也是可以进行传参的，如下代码：
+
+```js
+const store = new Vue.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    add (state, payload) {
+      state.count += payload.amount
+    }
+  },
+  actions: {
+    add ({ commit }, payload) {
+      commit('add', payload)
+    }
+  }
+})
+
+store.dispatch('add', {
+  amount: 10
+})
+
+// or
+
+store.dispatch({
+  type: 'add',
+  amount: 10
+})
+```
+
+#### 在组件中如何分发Action
+
+我们在组件中可以通过，`this.$store.dispatch('xxx')` 就可以调用了，如下：
+
+```js
+export default {
+  ...
+  mounted() {
+  	this.$stote.dispatch('add', {
+  		amount: 10
+		})
+	}
+}
+```
+
+或者，我们可以采用 `mapActions` 辅助函数调用，如下：
+
+```js
+import { mapActions } from 'vuex'
+
+export default {
+  ...
+  mounted () {
+    this.add({
+  		amount: 10
+		})
+  },
+  methods: {
+    ...mapActions['add'] // 将 add 映射为 this.$store.dispatch('add')
+  }
+}
+```
+
