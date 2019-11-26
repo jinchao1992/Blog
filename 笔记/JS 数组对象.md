@@ -244,6 +244,39 @@ arr[-1]; // undefined
   arr.findIndex(item => item % 5 === 0); // 0
   ```
 
+* `includes()` 方法用于在查找数组是否包含该元素，返回一个布尔值，包含返回 `true` ，不包含则返回 `false`。包含两个参数，第一个参数是要查找的元素，第二个参数为数组开始下标，默认为 `0`。
+
+  ```js
+  const arr = [1, 2, 3]
+  arr.includes(7) // false
+  arr.includes(1, 3) // false
+  arr.includes(2) // true
+  ```
+
+* `every()` 方法，接受一个检测函数（predicate），如果数组的每一项都能通过函数检测，则返回 true，否则返回 false。检测函数接收三个参数 `predicate(item[, index[, array]])` 分别代表当前数组元素、索引、以及数组本身。
+
+  ```js
+  const evens = [0, 2, 4, 6]
+  const numbers = [0, 1, 2, 3, 4]
+  function isEven(numer) {
+    return numer % 2 === 0
+  }
+  evens.every(isEven) // true
+  numbers.every(isEven) // false
+  ```
+
+* `some()` 方法，正好与 `every` 方法相反。接受一个检测函数（predicate），如果数组有一项能通过函数检测，则返回 true，否则返回 false。检测函数接收三个参数 `predicate(item[, index[, array]])` 分别代表当前数组元素、索引、以及数组本身。
+
+  ```js
+  const evens = [0, 1, 2, 3]
+  const numbers = [1,3,5,7]
+  function isEven(numer) {
+    return numer % 2 === 0
+  }
+  evens.some(isEven) // true
+  numbers.some(isEven) // false
+  ```
+
 ## 增加数组元素
 
 * `push()` 方法用于在数组的尾部添加一个或者多个元素，并返回数组的长度。该方法会改变原数组。
@@ -342,6 +375,46 @@ arr[-1]; // undefined
   ```
 
 * `reduce()` 方法，该方法会依次处理数组的每一个成员，最终累计一个值。接收两个参数，第一个参数时回调函数，第二个参数则是初始值。该方法比较复杂，推荐一篇文章可以延伸阅读 [reduce 实用指南](https://juejin.im/post/5bab8a9c6fb9a05d0e2e6bf0)。
+
+## 填充数组
+
+* `array.fill()` 方法，语法：`array.fill(value[, fromIndex[, toIndex]])` 表示数组中从下标为 `fromIndex` 到 `toIndex`的值填充，不包含 `toIndex` 本身。`fromIndex` 是可选参数默认为 `0`, `toIndex` 可选参数默认为 
+
+  `array.length`。**该方法会改变原数组**。
+
+  ```js
+  const numbers = [1, 2, 3, 4]
+  numbers.fill(0);
+  console.log(numbers) // [0, 0, 0, 0]
+  ```
+
+  还可以利用 `length` 来初始化特定长度的初始化数组的值。
+
+  ```js
+  const length = 3
+  const initArray = Array(length).fill(0) // Array 为数组的构造函数
+  console.log(initArray) // [0, 0, 0]
+  ```
+
+* `Array.from()` 也可以初始化带有对象的特定长度的数组
+
+  ```js
+  const length = 4
+  const initArray = Array.from(Array(4), () => {
+    return {}
+  })
+  console.log(initArray) // [{}, {}, {}, {}]
+  ```
+
+## 数组扁平化
+
+* `flat()` 方法，语法：`array.flat([depth])` 通过递归扁平属于数组的项直到一定深度来创建新数组，**该方法不会改变原数组**。`depth` 代表递归深度，默认为 1。`Infinity` 可展开任意深度的嵌套数组。
+
+  ```js
+  const arrays = [0, [1, 3, 5], [2, 4, 6]]
+  const flatArray = arrays.flat()
+  console.log(flatArray) // [0, 1, 3, 5, 2, 4, 6]
+  ```
 
 ## 参考资料
 
