@@ -319,4 +319,3 @@ div.getAttribute('class') // 可以获取所有属性
 ## 后记
 
 DOM 很难用，但是我们也要学会常用的 DOM 操作，因为 JQuery 曾经垄断了前端好多年，JQuery 中最常见的就是 DOM 操作了。所以学会了 DOM 操作，我们也可以看看 JQuery 中对于 DOM 操作的封装了。
-
