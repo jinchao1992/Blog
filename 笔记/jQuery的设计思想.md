@@ -92,11 +92,16 @@ $('div').html('hello') // 给div里增加HTML内容
 ## 创建元素、插入元素、复制和删除元素
 
 * **创建：** `$('标签名')`，例如： `$('<div id="div1"></div>');`。
+
 * **插入：**
-  1. append(); 把元素添加到指定的节点的里面的最后；或者 元素.appendTo(指定的节点)。
-  2. prepend(); 把元素添加到指定的节点的里面的最前；或者 元素.prependTo(指定的节点)。
-  3. before(); 把元素添加到指定的节点的前面；或者元素.insertBefore(指定的节点)。
-  4. after(); 把元素添加到指定节点的后面；或者元素.insertAfter(指定的节点)。
+
+  * `append()`; 把元素添加到指定的节点的里面的最后；或者 `元素.appendTo(指定的节点)`。
+
+  * `prepend()`; 把元素添加到指定的节点的里面的最前；或者 `元素.prependTo(指定的节点)`。
+
+  * `before()`; 把元素添加到指定的节点的前面；或者 `元素.insertBefore(指定的节点)`。
+
+  *  `after()`; 把元素添加到指定节点的后面；或者 `元素.insertAfter(指定的节点)`。
 
 注意：上述两者的区别在于：后续操作的是给谁操作？ 答案：谁的在前面就是操作的谁，第一种是指定的节点在前面，第二种是元素在前面，所以第一种后续的操作是操作的指定的节点，而第二种后续的操作是操作的元素。
 
@@ -106,6 +111,8 @@ $('div').html('hello') // 给div里增加HTML内容
 ## 后续
 
 以上只是对 jQuery的一个初步介绍，jQuery还有很多东西，比如 [工具方法](https://www.jquery123.com/category/utilities/) 、[事件操作](https://www.jquery123.com/category/events/) 、[动画](https://www.jquery123.com/category/effects/)等。如果要想掌握好 `jQuery` 还是需要从项目中来。当然前端发展到今天 jQuery 大家可能都不用了，但是我们还是可以学习一下它的一些思想，也利于我们更好的去掌握更加新的框架，万变不离其宗嘛，加油呀！
+
+参照jQuery的思想，自己封装了一些方法 [dom-api](https://github.com/jinchao1992/dom-api-2) 。
 
 ## 参考学习资料
 
